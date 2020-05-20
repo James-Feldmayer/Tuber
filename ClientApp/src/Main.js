@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-
-import './App.css';
+import './Main.css';
 
 const mapStyles = {
   width: '95%',
   height: '75%',
 };
 
-class App extends Component {
+class Main extends Component {
   render() {
       return (
       <div className="App">
@@ -33,4 +32,4 @@ class App extends Component {
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBRHWRWz4ALveAF2bcLkry0hL5UFNmC2fo'
-})(App);
+})(Main);
