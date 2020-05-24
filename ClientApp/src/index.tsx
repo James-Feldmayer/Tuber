@@ -6,9 +6,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <Login />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
