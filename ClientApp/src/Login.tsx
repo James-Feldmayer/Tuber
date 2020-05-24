@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
+
 async function postData(url = '', data = {}) {
   const response = await fetch(url, {
     method: 'POST',
@@ -26,36 +30,57 @@ function Login() {
 
   return (
     <React.Fragment>
-      <form>
-          <label htmlFor="username">username</label>
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={e => setUser({username : e.target.value, password : user.password})}
-          />
+      <div style={{padding:"20px"}}>
+        <Grid container spacing={3} justify="space-between" direction="row">
+          <Grid item>
+            <h1>TUBER</h1>
+          </Grid>
+          <Grid item>
+            <Button style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
+          </Grid>
+        </Grid>        
+      </div>
+      <div style={{textAlign:"center", backgroundColor:"#E0474C"}}>
+        <Grid container spacing={3} direction="column">
+          <Grid item>
+            <h1 style={{color:"White"}}>Login</h1>
+          </Grid>
+          <Grid item>
+            <TextField 
+              variant="outlined" 
+              size="small" 
+              label="Enter Username"
+              color="primary"
+              style={{backgroundColor: "#ffffff"}}
+              onChange={e => setUser({username : e.target.value, password : user.password})}
+            />
+          </Grid>
+          <Grid item>
+              <TextField 
+                variant="outlined" 
+                label="Enter Password" 
+                size="small" 
+                style={{backgroundColor: "#ffffff"}}
+                onChange={e => setUser({username : user.username, password : e.target.value})} 
+              />
+          </Grid>
+          <Grid item>
+            <Button variant='outlined' onClick={handleClick} style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
+          </Grid>
+          <Grid item>
+            <a href="" title="Sign up for Tuber" style={{color:"White"}}>Not registered? Sign up for Tuber</a>
+          </Grid>
+        </Grid>
 
-          <br />
-          <br />
+        <br />
 
-          <label htmlFor="password">password</label>
-          <input
-            type="text"
-            name="password"
-            value={user.password}
-            onChange={e => setUser({username : user.username, password : e.target.value})}
-          />
-      </form>
+        <label>{user.username + " " + user.password}</label>
 
-      <br />
+        <br />
+        <br />
 
-      <label>{user.username + " " + user.password}</label>
-
-      <br />
-      <br />
-
-      <button onClick={handleClick}>Login</button>
-      <h1>{signal}</h1>
+        <h1>{signal}</h1>
+      </div>
     </React.Fragment>
   );
 }

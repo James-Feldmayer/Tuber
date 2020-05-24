@@ -3,9 +3,14 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import './Main.css';
 import CurrentLocation from './Map';
 
-const mapStyles = {
-  width: '95%',
-  height: '75%',
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Grid from '@material-ui/core/Grid'
+
+const style = {
+  width: '50vw',
+  height: '50vh',
 };
 
 class Main extends Component {
@@ -60,37 +65,57 @@ class Main extends Component {
   }
 
   render() {
-      if (!this.props.loaded) {
+    if (!this.props.loaded) {
         return <div className = "App">Loading...</div>
-      }
-      return (
-      <div className="App">
-        <h1 className = "App-header">Tuber</h1>
-        <div className = "App-map">
+    }
+    <div>
+      <div className="App-header">
+        <Grid container spacing={3} direction="row">
+          <Grid item xs={50}>
+            <h4>Tuber</h4>
+            <ButtonGroup>
+              <Button variant='outlined'>Create Tour</Button>
+              <Button variant='outlined'>Manage Tours</Button>
+              <Button variant='outlined'>Login</Button>
+              <Button variant='outlined'>Sign Up</Button>
+            </ButtonGroup>
+          </Grid>
+          <Grid item xs={10}>
+            <TextField variant="outlined" size="small" helperText="Enter Tour Type" />
+            <TextField variant="outlined" size="small" helperText="Enter Location" />
+            &nbsp;&nbsp;&nbsp;
+            <ButtonGroup>
+              <Button variant="outlined">Search</Button>
+              <Button variant="outlined">More Filters</Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid>
+      </div>
+      <div className="App-map">
+        <Grid item xs={20}>
+          <p>Text</p>
+        </Grid>
+        <Grid item xs={10}>
           <CurrentLocation
             centerAroundCurrentLocation
             google={this.props.google}
           >
-            {this.displayMarkers()}
-            <Marker onClick={this.onMarkerClick} name="Current Location"/>
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-              onClose={this.onClose}
-            >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-            </InfoWindow>
-          </CurrentLocation>
-        </div>
-        <div>
-          <button type="button">Home</button>
-          <button type="button">History</button> 
-          <button type="button">Account</button> 
-        </div>
+          {this.displayMarkers()}
+          <Marker onClick={this.onMarkerClick} name="Current Location"/>
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+          <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+          </div>
+          </InfoWindow>
+        </CurrentLocation>
+        </Grid>
       </div>
-   );
+    </div>
+    );
   }
 }
 
