@@ -17,6 +17,12 @@
   color: black;
 }
 
+.App-body {
+  background-color: white;
+  padding: 20px;
+  color: black;
+}
+
 .App-map {
   padding-top: 10px;
   padding-right: 10px;
