@@ -66,55 +66,65 @@ class Main extends Component {
 
   render() {
     if (!this.props.loaded) {
-        return <div className = "App">Loading...</div>
+      return <div className = "App">Loading...</div>
     }
-    <div>
-      <div className="App-header">
-        <Grid container spacing={3} direction="row">
-          <Grid item xs={50}>
-            <h4>Tuber</h4>
-            <ButtonGroup>
-              <Button variant='outlined'>Create Tour</Button>
-              <Button variant='outlined'>Manage Tours</Button>
-              <Button variant='outlined'>Login</Button>
-              <Button variant='outlined'>Sign Up</Button>
-            </ButtonGroup>
+    return (
+      <React.Fragment>
+        <div className="App-header">
+          <hr />
+          <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
+            <Grid item>
+              <h2>TUBER</h2>
+            </Grid>
+            <Grid item>
+              <ButtonGroup>
+                <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
+                <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
+                <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
+                <Button variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
+              </ButtonGroup>
+            </Grid>
           </Grid>
-          <Grid item xs={10}>
-            <TextField variant="outlined" size="small" helperText="Enter Tour Type" />
-            <TextField variant="outlined" size="small" helperText="Enter Location" />
-            &nbsp;&nbsp;&nbsp;
-            <ButtonGroup>
-              <Button variant="outlined">Search</Button>
-              <Button variant="outlined">More Filters</Button>
-            </ButtonGroup>
+          <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
+            <Grid item>
+              <TextField variant="outlined" size="small" label="What are you looking for?" />
+              <TextField variant="outlined" size="small" label="Where?" />
+              <TextField variant="outlined" size="small" label="How many people?" />
+              &nbsp;&nbsp;&nbsp;
+              <ButtonGroup>
+                <Button variant="outlined" style={{backgroundColor: "#7ACFD6", color: "#ffffff", fontWeight: "bold"}}>Explore</Button>
+                <Button variant="outlined" style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>More Filters</Button>
+              </ButtonGroup>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-      <div className="App-map">
-        <Grid item xs={20}>
-          <p>Text</p>
-        </Grid>
-        <Grid item xs={10}>
-          <CurrentLocation
-            centerAroundCurrentLocation
-            google={this.props.google}
-          >
-          {this.displayMarkers()}
-          <Marker onClick={this.onMarkerClick} name="Current Location"/>
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-          </InfoWindow>
-        </CurrentLocation>
-        </Grid>
-      </div>
-    </div>
+          <hr />
+        </div>
+        <div className="App-body">
+          <Grid container spacing={3} direction="row" justify="flex-start" alignItems="center">
+            <Grid item>
+              Locations
+            </Grid>
+            <Grid item>
+              <CurrentLocation
+                centerAroundCurrentLocation
+                google={this.props.google}
+              >
+              {this.displayMarkers()}
+              <Marker onClick={this.onMarkerClick} name="Current Location"/>
+              <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}
+                onClose={this.onClose}
+                >
+                <div>
+                  <h4>{this.state.selectedPlace.name}</h4>
+                </div>
+              </InfoWindow>
+              </CurrentLocation>
+            </Grid>
+          </Grid>
+        </div>
+      </React.Fragment>
     );
   }
 }
