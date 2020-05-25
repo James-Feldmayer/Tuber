@@ -87,9 +87,11 @@ class Main extends Component {
           </Grid>
           <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
             <Grid item>
-              <TextField variant="outlined" size="small" label="What are you looking for?" />
-              <TextField variant="outlined" size="small" label="Where?" />
-              <TextField variant="outlined" size="small" label="How many people?" />
+              <TextField variant="outlined" size="small" label="What are you looking for?" style={{backgroundColor:"#FFFFFF"}}/>
+              &nbsp;
+              <TextField variant="outlined" size="small" label="Where?" style={{backgroundColor:"#FFFFFF"}}/>
+              &nbsp;
+              <TextField variant="outlined" size="small" label="How many people?"  style={{backgroundColor:"#FFFFFF"}}/>
               &nbsp;&nbsp;&nbsp;
               <ButtonGroup>
                 <Button variant="outlined" style={{backgroundColor: "#7ACFD6", color: "#ffffff", fontWeight: "bold"}}>Explore</Button>
