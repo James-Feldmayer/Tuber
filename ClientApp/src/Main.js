@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { Link as RouterLink } from "react-router-dom";
 import './Main.css';
 import CurrentLocation from './Map';
 
@@ -80,8 +81,8 @@ class Main extends Component {
               <ButtonGroup>
                 <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
                 <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
-                <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
-                <Button variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
+                <Button component={RouterLink} to="/Login" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
+                <Button component={RouterLink} to="/Register" variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
               </ButtonGroup>
             </Grid>
           </Grid>
