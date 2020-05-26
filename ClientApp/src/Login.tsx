@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
@@ -36,7 +37,7 @@ function Login() {
             <h1>TUBER</h1>
           </Grid>
           <Grid item>
-            <Button style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
+            <Button component={RouterLink} to="/" style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
           </Grid>
         </Grid>        
       </div>
