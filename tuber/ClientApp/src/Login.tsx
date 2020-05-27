@@ -34,10 +34,10 @@ function Login() {
       <div style={{padding:"20px"}}>
         <Grid container spacing={3} justify="space-between" direction="row">
           <Grid item>
-            <h1>TUBER</h1>
+            <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
           </Grid>
           <Grid item>
-            <Button component={RouterLink} to="/" style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
+            <Button component={RouterLink} to="/Search" style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
           </Grid>
         </Grid>        
       </div>
@@ -69,7 +69,7 @@ function Login() {
             <Button variant='outlined' onClick={handleClick} style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
           </Grid>
           <Grid item>
-            <a href="" title="Sign up for Tuber" style={{color:"White"}}>Not registered? Sign up for Tuber</a>
+            <a href="/Register" title="Sign up for Tuber" style={{color:"White"}}>Not registered? Sign up for Tuber</a>
           </Grid>
         </Grid>
 
@@ -87,4 +87,3 @@ function Login() {
 }
 
 export default Login;
-
