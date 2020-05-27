@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Link as RouterLink } from "react-router-dom";
-import './Main.css';
+import './Search.css';
 import CurrentLocation from './Map';
 
 import Button from '@material-ui/core/Button';
@@ -14,7 +14,7 @@ const style = {
   height: '50vh',
 };
 
-class Main extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
 
@@ -72,10 +72,9 @@ class Main extends Component {
     return (
       <React.Fragment>
         <div className="App-header">
-          <hr />
           <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
             <Grid item>
-              <h2>TUBER</h2>
+              <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
             </Grid>
             <Grid item>
               <ButtonGroup>
@@ -100,7 +99,6 @@ class Main extends Component {
               </ButtonGroup>
             </Grid>
           </Grid>
-          <hr />
         </div>
         <div className="App-body">
           <Grid container spacing={3} direction="row" justify="flex-start" alignItems="center">
@@ -134,4 +132,4 @@ class Main extends Component {
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBRHWRWz4ALveAF2bcLkry0hL5UFNmC2fo'
-})(Main);
+})(Search);
