@@ -27,6 +27,8 @@ function Login() {
   function handleClick() {
     postData('https://localhost:5001/api/Login', { Username: user.username, Password: user.password })
       .then((response) => { setSignal(response); });
+    
+    window.location.href = "/Tourist"
   }
 
   return (
