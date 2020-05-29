@@ -12,8 +12,8 @@ class HomeHeader extends Component {
                     </Grid>
                     <Grid item>
                         <ButtonGroup>
-                            <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
-                            <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
+                            <Button component={RouterLink} to="/CreateTour" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
+                            <Button component={RouterLink} to="/Tourist" style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
                             <Button component={RouterLink} to="/Login" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
                             <Button component={RouterLink} to="/Register" variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
                         </ButtonGroup>

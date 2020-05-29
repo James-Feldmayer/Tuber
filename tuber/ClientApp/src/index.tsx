@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactDOM from 'react-dom';
+
 import Login from './Login';
 import Search from './Search';
 import Home from './Home';
 import Register from './Register';
-import './index.css';
 import Tourist from './Tourist';
+import CreateTour from './CreateTour';
+
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +23,9 @@ ReactDOM.render(
         </Route>
         <Route path="/Search">
           <Search />
+        </Route>
+        <Route path="/CreateTour">
+          <CreateTour />
         </Route>
         <Route path="/Tourist">
           <Tourist />
