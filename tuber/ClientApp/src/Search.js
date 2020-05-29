@@ -4,15 +4,53 @@ import { Link as RouterLink } from "react-router-dom";
 import './Search.css';
 import CurrentLocation from './Map';
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Grid from '@material-ui/core/Grid'
+import { Button, TextField, ButtonGroup, Grid, Table, TableRow, TableCell } from '@material-ui/core'
 
 const style = {
   width: '50vw',
   height: '50vh',
 };
+
+class Header extends Component {
+  render() {
+    return(
+      <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
+        <Grid item>
+          <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
+        </Grid>
+        <Grid item>
+          <ButtonGroup>
+            <Button component={RouterLink} to="/CreateTour" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
+            <Button component={RouterLink} to="/Tourist" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
+            <Button component={RouterLink} to="/Login" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
+            <Button component={RouterLink} to="/Register" variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
+    );
+  }
+}
+
+class SearchForm extends Component {
+  render() {
+    return(
+      <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
+        <Grid item>
+          <TextField variant="outlined" size="small" label="What are you looking for?" style={{backgroundColor:"#FFFFFF"}}/>
+          &nbsp;
+          <TextField variant="outlined" size="small" label="Where?" style={{backgroundColor:"#FFFFFF"}}/>
+          &nbsp;
+          <TextField variant="outlined" size="small" label="How many people?"  style={{backgroundColor:"#FFFFFF"}}/>
+          &nbsp;&nbsp;&nbsp;
+          <ButtonGroup>
+            <Button variant="outlined" style={{backgroundColor: "#7ACFD6", color: "#ffffff", fontWeight: "bold"}}>Explore</Button>
+            <Button variant="outlined" style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>More Filters</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
+    );
+  }
+}
 
 class Search extends Component {
   constructor(props) {
@@ -72,38 +110,35 @@ class Search extends Component {
     return (
       <React.Fragment>
         <div className="App-header">
-          <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
-            <Grid item>
-              <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
-            </Grid>
-            <Grid item>
-              <ButtonGroup>
-                <Button component={RouterLink} to="/CreateTour" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Create Tour</Button>
-                <Button component={RouterLink} to="/Tourist" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Manage Tours</Button>
-                <Button component={RouterLink} to="/Login" variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
-                <Button component={RouterLink} to="/Register" variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Sign Up</Button>
-              </ButtonGroup>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
-            <Grid item>
-              <TextField variant="outlined" size="small" label="What are you looking for?" style={{backgroundColor:"#FFFFFF"}}/>
-              &nbsp;
-              <TextField variant="outlined" size="small" label="Where?" style={{backgroundColor:"#FFFFFF"}}/>
-              &nbsp;
-              <TextField variant="outlined" size="small" label="How many people?"  style={{backgroundColor:"#FFFFFF"}}/>
-              &nbsp;&nbsp;&nbsp;
-              <ButtonGroup>
-                <Button variant="outlined" style={{backgroundColor: "#7ACFD6", color: "#ffffff", fontWeight: "bold"}}>Explore</Button>
-                <Button variant="outlined" style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>More Filters</Button>
-              </ButtonGroup>
-            </Grid>
-          </Grid>
+          <Header />
+          <SearchForm />
         </div>
         <div className="App-body">
-          <Grid container spacing={3} direction="row" justify="flex-start" alignItems="center">
+          <Grid container spacing={3} direction="row" justify="space-evenly" alignItems="center">
             <Grid item>
-              Locations
+              <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
+                <TableRow>
+                    <TableCell>Tour Name</TableCell>
+                    <TableCell>Tour Desc</TableCell>
+                    <TableCell>Tour Price</TableCell>
+                    <TableCell>Guide Name</TableCell>
+                    <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Tour Name</TableCell>
+                    <TableCell>Tour Desc</TableCell>
+                    <TableCell>Tour Price</TableCell>
+                    <TableCell>Guide Name</TableCell>
+                    <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Tour Name</TableCell>
+                    <TableCell>Tour Desc</TableCell>
+                    <TableCell>Tour Price</TableCell>
+                    <TableCell>Guide Name</TableCell>
+                    <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                </TableRow>
+              </Table>
             </Grid>
             <Grid item>
               <CurrentLocation

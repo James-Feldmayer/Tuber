@@ -8,6 +8,7 @@ import Home from './Home';
 import Register from './Register';
 import Tourist from './Tourist';
 import CreateTour from './CreateTour';
+import ViewTour from './ViewTour';
 
 import './index.css';
 
@@ -29,6 +30,9 @@ ReactDOM.render(
         </Route>
         <Route path="/Tourist">
           <Tourist />
+        </Route>
+        <Route path="/ViewTour">
+          <ViewTour />
         </Route>
         <Route path="/">
           <Home />
