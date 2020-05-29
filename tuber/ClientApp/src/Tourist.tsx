@@ -1,7 +1,7 @@
 import React, { useState, Component } from 'react';
 import { Link as RouterLink } from "react-router-dom";
 
-import { Button, TextField, Grid, ButtonGroup } from '@material-ui/core';
+import { Button, TextField, Grid, Table, TableCell, TableRow } from '@material-ui/core';
 
 class TouristHeader extends Component {
     render() {
@@ -99,28 +99,73 @@ class Tourist extends Component {
                             </div>
                             <div>
                                 <h3>Upcoming Tours</h3>
-                                <ul style={{listStyleType: "none"}}>
-                                    <li>
-                                        <p>Monkey Tour</p>
-                                    </li>
-                                    <li>
-                                        <p>Elephant Tour</p>
-                                    </li>
-                                </ul>
+                                <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                </Table>
                             </div>
                             <div>
                                 <h3>Completed Tours</h3>
-                                <ul style={{listStyleType: "none"}}>
-                                    <li>
-                                        <p>Monkey Tour</p>
-                                    </li>
-                                    <li>
-                                        <p>Elephant Tour</p>
-                                    </li>
-                                    <li>
-                                        <p>Tiger Tour</p>
-                                    </li>
-                                </ul>
+                                <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Monkey Tour</TableCell>
+                                        <TableCell>Gold Coast</TableCell>
+                                        <TableCell>5:00am</TableCell>
+                                        <TableCell>24th Jan</TableCell>
+                                        <TableCell>10 people</TableCell>
+                                        <TableCell>$150</TableCell>
+                                        <TableCell>Mr. Gomez (Guide)</TableCell>
+                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                                    </TableRow>
+                                </Table>
                             </div>
                         </Grid>
                         <Grid item>
