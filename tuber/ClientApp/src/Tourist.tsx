@@ -17,7 +17,7 @@ class TouristHeader extends Component {
                         <Button component={RouterLink} to="/Search" style={{backgroundColor: "#E0474C", color:"#FFFFFF", fontWeight: "bold"}}>Search</Button>
                     </Grid>
                     <Grid item>
-                        <Button style={{fontWeight: "bold"}}>Create Tour</Button>
+                        <Button component={RouterLink} to="/CreateTour" style={{fontWeight: "bold"}}>Create Tour</Button>
                         <Button style={{color:"#E0474C", fontWeight: "bold"}}>Switch to Tour Guide</Button>
                     </Grid>
                 </Grid>        
