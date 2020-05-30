@@ -9,6 +9,7 @@ import Register from './Register';
 import Tourist from './Tourist';
 import CreateTour from './CreateTour';
 import ViewTour from './ViewTour';
+import TourForm from './TourForm';
 
 import './index.css';
 
@@ -16,6 +17,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
+        <Route path="/TourForm/:id" component={TourForm}/>
+        <Route path="/CreateTour">
+          <TourForm />
+        </Route>
         <Route path="/Login">
           <Login />
         </Route>

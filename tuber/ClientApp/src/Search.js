@@ -90,15 +90,15 @@ class Search extends Component {
 
   displayMarkers = () => {
     return this.state.locations.map((location, index) => {
-      return <Marker 
-        name={location.name} 
-        key={index} 
-        id={index} 
+      return <Marker
+        name={location.name}
+        key={index}
+        id={index}
         position ={{
           lat: location.latitude,
           lng: location.longitude
         }}
-        onClick={this.onMarkerClick} 
+        onClick={this.onMarkerClick}
       />
     })
   }
