@@ -99,7 +99,7 @@ class ViewTourForm extends Component {
                     </Grid>
                     <br />
                     <Grid item>
-                        <Button style={{backgroundColor: "#7ACFD6", color: "#FFFFFF", fontWeight: "bold"}}>Book Tour</Button>
+                        <Button component={RouterLink} to="/Payment" style={{backgroundColor: "#7ACFD6", color: "#FFFFFF", fontWeight: "bold"}}>Book Tour</Button>
                     </Grid>
                     <br />
                     <Grid item>
