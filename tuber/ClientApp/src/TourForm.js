@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Session from './Components/Session';
 import ClickMapMarker from './Components/ClickMapMarker';
 import Grid from '@material-ui/core/Grid';
@@ -42,7 +39,6 @@ class TourForm extends Component {
                 title: localTour.Title,
                 price: localTour.Price,
                 description: localTour.Description,
-                barter: localTour.Barter,
                 location: localTour.Location,
                 //Sessions
                 sessionElements: this.genSessions(localTour.Sessions)
@@ -57,12 +53,12 @@ class TourForm extends Component {
             return ({
                 Sessions: [
                     {
-                        Days: ["monday", "wednesday", "sunday"],
+                        Date: "2020-06-01",
                         Duration: 305,
                         Time: "13:55"
                     },
                     {
-                        Days: ["tuesday", "thursday", "sunday"],
+                        Date: "2020-05-30",
                         Duration: 205,
                         Time: "05:56"
                     },
@@ -70,7 +66,6 @@ class TourForm extends Component {
                 Title: "Paris Tour",
                 Description: "A slow stroll around the city",
                 Price: 7.90,
-                Barter: true,
                 Location: {lat: 12.532362, lng: 67.125125}
             });
         }
@@ -140,6 +135,47 @@ class TourForm extends Component {
         this.setState({Location: value});
     }
 
+    async apiCall(post, address, data=null) {
+        const location = window.location.hostname;
+        const postSettings = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        };
+        //Requires port
+        const url = `https://${location}:5001/api/${address}`;
+        try {
+            const fetchResponse = await (post ? fetch(url, postSettings) : fetch(url));
+            const data = await fetchResponse.json();
+            return data;
+        } catch (e) {
+            return e;
+        } 
+    }
+
+    handleSaveButton = (event) => {
+        let address = "AdjustTour/Create";
+        if (this.props.match.params) address = `AdjustTour/Update/${this.props.match.params.id}`;
+        const data = {
+            sessions: this.state.Sessions,
+            title: this.state.Title,
+            price: this.state.Price,
+            description: this.state.Description,
+            location: this.state.Location
+        };
+        this.apiCall(true, address, data)
+            .then((response) => console.log(response));
+    }
+
+    handleDeleteButton = (event) => {
+        const address = `AdjustTour/Delete/${this.props.match.params.id}`;
+        this.apiCall(true, address)
+            .then((response) => console.log(response));
+    }
+
     removeSession(index) {
         const sessionElements = this.state.sessionElements;
         let sessions = this.state.sessions;
@@ -177,8 +213,8 @@ class TourForm extends Component {
                         </Grid>
                         <Grid item>
                             <ButtonGroup>
-                                <Button variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Save</Button>
-                                {this.props.match ? <Button variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Delete</Button> : <></>}
+                                <Button onClick={this.handleSaveButton} variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Save</Button>
+                                {this.props.match ? <Button onClick={this.handleDeleteButton} variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Delete</Button> : <></>}
                             </ButtonGroup>
                         </Grid>
                     </Grid>
@@ -235,7 +271,7 @@ class TourForm extends Component {
                 */}
                 <div style={{padding: "20px", backgroundColor: "#78C5EF"}}>
                     <Grid container spacing={0} direction="row" justify="center" alignItems="center" style={{padding: "20px"}} xs={12}>
-                        <Grid container xs={7} direction="column" justify="space-around" style={{padding: "20px", backgroundColor: "#f2f3f4"}}>
+                        <Grid container xs={8} direction="column" justify="space-around" style={{padding: "20px", backgroundColor: "#f2f3f4"}}>
                             {this.state.sessionElements}
                             <Button variant="contained" onClick={() => {this.addSession()}}>Add New Session</Button>
                         </Grid>
