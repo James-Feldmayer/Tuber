@@ -8,21 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 
-function DayofWeek(props) {
-    const title = props.day.charAt(0).toUpperCase() + props.day.slice(1);
-    const handleChange = (event) => {
-        props.onChange(event.target.value);
-    }
-
-    return (
-        <FormControlLabel
-            value={props.day}
-            control={<Checkbox color="primary" defaultChecked={props.defaultChecked} onChange={handleChange} value={props.day}/>}
-            label={title}
-        />
-    );
-}
-
 class Session extends Component {
     constructor(props) {
         super(props);
@@ -30,33 +15,34 @@ class Session extends Component {
             const hour = Math.floor(props.defaultSession.Duration / 60);
             const min = (props.defaultSession.Duration % 60);
             this.state = {
-                days: props.defaultSession.Days,
+                date: props.defaultSession.Date,
                 time: props.defaultSession.Time,
                 hourDuration: hour,
                 minuteDuration: min
             }
         } else {
             this.state = {
-                days: [],
+                date: "",
                 time: "00:00",
                 hourDuration: 0,
-                minuteDuration: 0
+                minuteDuration: 0,
+                dateOpen: false
             }
         }
-        this.handleDayChange = this.handleDayChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleHourChange = this.handleHourChange.bind(this);
         this.handleMinuteChange = this.handleMinuteChange.bind(this);
     }
 
     sessionChange = (changeType, changeValue) => {
-        let days = this.state.days;
+        let date = this.state.date;
         let time = this.state.time;
         let hour = this.state.hourDuration;
         let min = this.state.minuteDuration;
         //Gets the most recent value of the session without utilising component on update
         switch (changeType) {
-            case "days": days = changeValue;break;
+            case "date": date = changeValue;break;
             case "time": time = changeValue;break;
             case "hour": hour = changeValue;break;
             case "min": min = changeValue;break;
@@ -64,22 +50,16 @@ class Session extends Component {
         }
         const totalDur = Number(hour) * 60 + Number(min);
         const sess = {
-            Days: days,
+            Date: date,
             Time: time,
             Duration: totalDur
         }
         this.props.sessionHandle(sess, this.props.sessionId);
     }
 
-    handleDayChange = (day) => {
-        const days = this.state.days;
-        const dayIndex = days.indexOf(day);
-        if (dayIndex < 0) days.push(day);
-        else days.splice(dayIndex, 1);
-        this.setState({
-            days: days
-        });
-        this.sessionChange("days", days);
+    handleDateChange = (event) => {
+        this.setState({date: event.target.value});
+        this.sessionChange("date", event.target.value);
     }
 
     handleTimeChange = (event) => {
@@ -97,24 +77,36 @@ class Session extends Component {
         this.sessionChange("min", event.target.value);
     }
 
+    todaysDate() {
+        const today = new Date();
+        let day = today.getDate();
+        if (day < 10) day = "0" + day;
+        let month = (today.getMonth()+1);
+        if (month < 10) month = "0" + month;
+        return today.getFullYear()+'-'+month+'-'+day;
+    }
+
     render() {
         return (
             <div>
-                <div>
-                    <FormLabel component="legend">Days</FormLabel>
-                    <FormGroup aria-label="dayofweek" row style={{backgroundColor: "#FFFFFF"}}>
-                        {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map(element => {
-                            return (
-                                <DayofWeek key={element} day={element} onChange={this.handleDayChange} defaultChecked={
-                                    typeof(this.props.defaultSession) !== 'undefined' ? this.props.defaultSession.Days.includes(element) : false
-                                }/>
-                            );
-                        })}
-                    </FormGroup>
-                </div>
-                <br />
                 <FormGroup aria-label="time" row>
                     <Grid container spacing={0} direction="row" justify="space-between">
+                        <div>
+                            <FormLabel component="legend">Date</FormLabel>
+                            <TextField
+                                id="date"
+                                type="date"
+                                variant="outlined"
+                                defaultValue={
+                                    typeof(this.props.defaultSession) !== 'undefined' ? this.props.defaultSession.Date : this.todaysDate()
+                                }
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                style={{backgroundColor: "#FFFFFF"}}
+                                onChange={this.handleDateChange}
+                            />
+                        </div>
                         <div>
                             <FormLabel component="legend">Start Time</FormLabel>
                             <TextField
