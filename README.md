@@ -1,19 +1,33 @@
-# Changes to the file structures
 
-Our frontend (reactjs code) is loacted in tuber/ClientApp
+# Quickstart
+You need to run one command after an other, every step is required.
 
+# Clone
+git clone https://gitlab.com/the_jukebox/csci334.git
 
-In order to run build and run the project ASP.NET Core is now required, 
-it is cross platform (Linux, Mac and Windows).
+cd csci334
 
-# Building and running the website
+# Database
+cd database
 
-From inside tuber/  
+sudo docker-compose -f stack.yml up
+
+sudo mssql -s localhost -u sa -p myPassw0rd
+
+CREATE DATABASE tuber_database;
+
+USE tuber_database;
+
+.run dbcreate.sql
+
+.run dbload.sql
+
+.quit
+
+# Dotnet
+cd ../tuber
 
 dotnet build
 
 dotnet run
 
-Open the website in the browser at
-
-localhost:5001/
