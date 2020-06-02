@@ -1,6 +1,9 @@
 import React, { useState, Component } from 'react';
 import { Link as RouterLink } from "react-router-dom";
 
+import ItemBox from './Components/ItemBox'
+import TableData from './Components/TableData'
+
 import { Button, TextField, Grid, Table, TableCell, TableRow } from '@material-ui/core';
 
 class TouristHeader extends Component {
@@ -26,6 +29,36 @@ class TouristHeader extends Component {
     }
 }
 
+function TouristSidebar(props: { username: string; rating: number; totalRecent: number; }) {
+    return (
+        <Grid item>
+            <div>
+                <Grid container direction = "column">
+                    <Grid item style={{backgroundColor: "#7ACFD6", padding: "20px", width: 200, height: 150}}>
+                        <h3 style={{color: "#FFFFFF"}}>Welcome, {props.username}</h3>
+                        <b style={{color: "#FFFFFF"}}>{props.rating} *</b>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{width: 200, fontWeight: "bold"}}>Dashboard</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{width: 200, fontWeight: "bold"}}>Recent Messages ({props.totalRecent})</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{width: 200, fontWeight: "bold"}}>Reviews</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{width: 200, fontWeight: "bold"}}>Cancelled Tours</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{width: 200, fontWeight: "bold"}}>All Disputes</Button>
+                    </Grid>
+                </Grid>
+            </div>
+        </Grid>
+    );
+}
+
 class Tourist extends Component {
     render() {
         let username="Mitchell";
@@ -34,142 +67,38 @@ class Tourist extends Component {
         return (
             <React.Fragment>
                 <TouristHeader />
-                <div>
+                <div style={{backgroundColor: "#F3F8F9"}}>
                     <Grid container direction="row">
-                        <Grid item>
-                            <div>
-                                <Grid container direction = "column">
-                                    <Grid item style={{backgroundColor: "#7ACFD6", padding: "20px", width: 250, height: 150}}>
-                                        <h3>Welcome, {username}</h3>
-                                        <b>{rating} *</b>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 250, fontWeight: "bold"}}>Dashboard</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 250, fontWeight: "bold"}}>Recent Messages ({totalRecent})</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 250, fontWeight: "bold"}}>Reviews</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 250, fontWeight: "bold"}}>Cancelled Tours</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 250, fontWeight: "bold"}}>All Disputes</Button>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                        </Grid>
-                        <Grid item style={{padding: "30px", backgroundColor: "lightgray"}}>
+                        <TouristSidebar username={username} rating={rating} totalRecent={totalRecent} />
+                        <Grid item style={{padding: "30px"}}>
                             <div>
                                 <h2>DASHBOARD</h2>
                                 <Grid container direction="row" style={{}}>
-                                    <Grid item>
-                                        <div style={{padding: "20px", backgroundColor: "#E0474C", color: "white"}}>
-                                            <h4>14</h4>
-                                            <p>Completed tours</p>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div style={{padding: "20px", backgroundColor: "#7ACFD6", color: "white"}}>
-                                            <h4>14</h4>
-                                            <p>Upcoming tours</p>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div style={{padding: "20px", backgroundColor: "#E0474C", color: "white"}}>
-                                            <h4>$45</h4>
-                                            <p>Payment earned</p>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div style={{padding: "20px", backgroundColor: "#7ACFD6", color: "white"}}>
-                                            <h4>20</h4>
-                                            <p>Reviews</p>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div style={{padding: "20px", backgroundColor: "#E0474C", color: "white"}}>
-                                            <h4>14</h4>
-                                            <p>Cancelled tours</p>
-                                        </div>
-                                    </Grid>
+                                    <ItemBox type="Completed tours" amount={14} color="#E0474C" isPrice={false}/>
+                                    <ItemBox type="Upcoming tours" amount={14} color="#7ACFD6" isPrice={false}/>
+                                    <ItemBox type="Payment earned" amount={45} color="#E0474C" isPrice={true} />
+                                    <ItemBox type="Reviews" amount={20} color="#7ACFD6" isPrice={false} />
+                                    <ItemBox type="Cancelled tours" amount={14} color="#E0474C" isPrice={false} />
                                 </Grid>
                             </div>
-                            <div>
+                            <div style={{padding: "10px", backgroundColor: "#EAEAEA"}}>
                                 <h3>Upcoming Tours</h3>
                                 <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
+                                    <TableData title="Monkey Tour" location="Gold Coast" date="24th Jan" time="5:00am" totalAttendees="10" price="150" guideName="Mr. Gomez" />
+                                    <TableData title="Monkey Tour" location="Gold Coast" date="24th Jan" time="5:00am" totalAttendees="10" price="150" guideName="Mr. Gomez" />
                                 </Table>
                             </div>
-                            <div>
+                            <br />
+                            <div style={{padding: "10px", backgroundColor: "#EAEAEA"}}>
                                 <h3>Completed Tours</h3>
                                 <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>Monkey Tour</TableCell>
-                                        <TableCell>Gold Coast</TableCell>
-                                        <TableCell>5:00am</TableCell>
-                                        <TableCell>24th Jan</TableCell>
-                                        <TableCell>10 people</TableCell>
-                                        <TableCell>$150</TableCell>
-                                        <TableCell>Mr. Gomez (Guide)</TableCell>
-                                        <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
-                                    </TableRow>
+                                    <TableData title="Monkey Tour" location="Gold Coast" date="24th Jan" time="5:00am" totalAttendees="10" price="150" guideName="Mr. Gomez" />
+                                    <TableData title="Monkey Tour" location="Gold Coast" date="24th Jan" time="5:00am" totalAttendees="10" price="150" guideName="Mr. Gomez" />
                                 </Table>
                             </div>
                         </Grid>
                         <Grid item>
-                            <div style={{padding: "20px", backgroundColor:"lightgray"}}>
+                            <div style={{padding: "20px"}}>
                                 <Grid container direction="column">
                                     <Grid item>
                                         <h4>Upcoming Tour Schedule</h4>
