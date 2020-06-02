@@ -1,6 +1,11 @@
 
 # Quickstart
-You need to run one command after an other, every step is required.
+You need to follow these steps carefully, every step is required.
+
+# Install
+[install docker](https://www.docker.com/products/docker-desktop)
+
+sudo docker pull microsoft/mssql-server-linux:latest
 
 # Clone
 git clone https://gitlab.com/the_jukebox/csci334.git
@@ -14,7 +19,7 @@ sudo docker-compose -f stack.yml up
 
 sudo mssql -s localhost -u sa -p myPassw0rd
 
-CREATE DATABASE tuber_database;
+CREATE DATABASE tuber_database; 
 
 USE tuber_database;
 
@@ -30,4 +35,5 @@ cd ../tuber
 dotnet build
 
 dotnet run
+
 
