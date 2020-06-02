@@ -6,24 +6,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBFirst
+namespace tuber
 {
     [Route("api/[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private readonly loginContext _context; 
+        private readonly tuber_databaseContext _context; 
 
         public RegisterController() 
         {
-            _context = new loginContext(); 
+            _context = new tuber_databaseContext(); 
         }
-
+        
+        /*
         // POST: register/
         [HttpPost]
         public async Task<ActionResult<bool>> RegisterUser(Users input)
         {
-            Users query = await _context.Users.FindAsync(input.Username);
+            Users query = await _context.Users.FindAsync(input.UsersId);
 
             if (query == null) {
                 _context.Users.Add(input);
@@ -34,6 +35,7 @@ namespace DBFirst
             
             return false;
         }
+        */
 
     }
 
