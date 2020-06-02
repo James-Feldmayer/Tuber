@@ -20,6 +20,7 @@ sudo docker-compose -f stack.yml up
 sudo mssql -s localhost -u sa -p myPassw0rd
 
 CREATE DATABASE tuber_database; 
+
 USE tuber_database;
 
 .run dbcreate.sql
