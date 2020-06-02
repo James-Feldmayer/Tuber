@@ -27,6 +27,14 @@ function Login() {
   function handleClick() {
     postData('https://localhost:5001/api/Login', { UsersId: user.username, Password: user.password })
       .then((response) => { setSignal(response); });
+    
+    if (user.username !== '') {
+      if (user.username === "admin") {
+        window.location.href = "/Admin"
+      } else {
+        window.location.href = "/Tourist"
+      }
+    }
   }
 
   return (

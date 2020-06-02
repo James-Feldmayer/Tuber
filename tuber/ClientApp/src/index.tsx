@@ -11,6 +11,7 @@ import CreateTour from './CreateTour';
 import ViewTour from './ViewTour';
 import Payment from './Payment';
 import TourForm from './TourForm';
+import Admin from './Admin';
 
 import './index.css';
 
@@ -19,14 +20,33 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route path="/TourForm/:id" component={TourForm}/>
-        <Route path="/Login"><Login /></Route>
-        <Route path="/Register"><Register /></Route>
-        <Route path="/Search"><Search /></Route>
-        <Route path="/CreateTour"><CreateTour /></Route>
-        <Route path="/Tourist"><Tourist /></Route>
-        <Route path="/ViewTour"><ViewTour /></Route>
-        <Route path="/Payment"><Payment /></Route>
-        <Route path="/"><Home /></Route>
+        <Route path="/CreateTour">
+          <TourForm />
+        </Route>
+        <Route path="/Login">
+          <Login />
+        </Route>
+        <Route path="/Register">
+          <Register />
+        </Route>
+        <Route path="/Search">
+          <Search />
+        </Route>
+        <Route path="/CreateTour">
+          <CreateTour />
+        </Route>
+        <Route path="/Admin">
+          <Admin />
+        </Route>
+        <Route path="/Tourist">
+          <Tourist />
+        </Route>
+        <Route path="/ViewTour">
+          <ViewTour />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
       </Switch>
     </Router>
   </React.StrictMode>,
