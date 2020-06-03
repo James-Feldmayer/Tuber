@@ -27,6 +27,8 @@ namespace tuber
         {
             List<Tour> query = _context.Tour.Where(s => s.TourTitle.Contains(input.TourTitle)).ToList();
 
+            Console.WriteLine(input.TourDescription);
+
             query = query.Where(s => s.TourDescription.Contains(input.TourDescription)).ToList();
 
             query = query.Where(s => s.AggregateScore >= input.AggregateScore).ToList();
