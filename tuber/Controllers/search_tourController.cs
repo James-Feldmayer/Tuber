@@ -25,13 +25,15 @@ namespace tuber
         [HttpPost]
         public List<Tour> search_tour(Tour input)
         {
-            List<Tour> query = _context.Tour.Where(s => s.TourTitle.Contains(input.TourTitle)).ToList();
+            List<Tour> query = _context.Tour.Where(s => s.AggregateScore >= input.AggregateScore).ToList();
+            
+            if(input.TourTitle != null) {
+                query = query.Where(s => s.TourTitle.Contains(input.TourTitle)).ToList();
+            }
 
-            Console.WriteLine(input.TourDescription);
-
-            query = query.Where(s => s.TourDescription.Contains(input.TourDescription)).ToList();
-
-            query = query.Where(s => s.AggregateScore >= input.AggregateScore).ToList();
+            if(input.TourDescription != null) {
+                query = query.Where(s => s.TourDescription.Contains(input.TourDescription)).ToList();
+            }
 
             return query;
         }
