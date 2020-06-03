@@ -1,0 +1,28 @@
+
+//no verification step for below
+
+//https://local:5001/api/create_message/ 
+//https://local:5001/api/search_messages/ 
+
+//https://local:5001/api/create_review/
+//https://local:5001/api/show_review/
+
+
+
+
+/*
+class InputTour : Tour
+{
+    MinLongitude, 
+    MaxLongitude, 
+    MinLatitude, 
+    MaxLatitude
+}
+
+{ "Latitude": -34.054370, "Longitude": 151.13709 }
+{ "Latitude": 15, "Longitude": 90 }
+
+--
+
+GuideId: ""
+*/

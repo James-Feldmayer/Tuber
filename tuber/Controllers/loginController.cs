@@ -6,32 +6,34 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-//https://local:5001/login/
+//https://local:5001/api/login/
 
 namespace tuber
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class loginController : ControllerBase
     {
         private readonly tuber_databaseContext _context;
 
-        public LoginController() 
+        public loginController() 
         {
             _context = new tuber_databaseContext(); 
         }
 
-        // POST: login/
+        // POST: { "UsersId": "DrNoobopolis", "Password": "P3NIZ" }
         [HttpPost]
-                                    //Users
-        public async Task<ActionResult<string>> LoginUser(Users input)
+        public async Task<ActionResult<string>> login(Users input)
         {
             Users query = await _context.Users.FindAsync(input.UsersId);
 
-            if (query == null) {
-                return "NO ACCOUNT FOUND";
+            bool userExists = (query != null);
+            bool passwordMatch = (query.Password == input.Password);
+            
+            if (userExists) {
+                return "NO ACCOUNT FOUND"; 
             }
-            else if (query.Password == input.Password) {
+            else if (passwordMatch) {
                 return "SUCCESSFULL";
             }
             else {  
