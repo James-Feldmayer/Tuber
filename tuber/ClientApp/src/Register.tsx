@@ -52,7 +52,7 @@ function Register() {
             <TextField 
               variant="outlined" 
               size="small" 
-              label="Enter email address"
+              label="Enter full name"
               color="primary"
               style={{backgroundColor: "#ffffff"}}
               onChange={e => setUser({username : e.target.value, password : user.password})}
@@ -62,14 +62,15 @@ function Register() {
             <TextField 
               variant="outlined" 
               size="small" 
-              label="Confirm email address"
+              label="Enter username"
               color="primary"
               style={{backgroundColor: "#ffffff"}}
               onChange={e => setUser({username : e.target.value, password : user.password})}
             />
           </Grid>
           <Grid item>
-              <TextField 
+              <TextField
+                type="password" 
                 variant="outlined" 
                 label="Enter password" 
                 size="small" 
@@ -79,6 +80,7 @@ function Register() {
           </Grid>
           <Grid item>
               <TextField 
+                type="password"
                 variant="outlined" 
                 label="Confirm password" 
                 size="small" 

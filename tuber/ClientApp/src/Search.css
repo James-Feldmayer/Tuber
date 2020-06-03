@@ -5,14 +5,14 @@
 }
 
 .App-header {
-  background-color: #E0474C;
+  background-color: "White";
   padding: 20px;
   font-size: calc(10px + 2vmin);
   color: black;
 }
 
 .App-body {
-  background-color: white;
+  background-color: #F3F8F9;
   padding: 20px;
   color: black;
 }

@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom';
 
 import Login from './Login';
 import Search from './Search';
-import Home from './Home';
+import Home from './Home/Home';
 import Register from './Register';
 import Tourist from './Tourist';
-import CreateTour from './CreateTour';
 import ViewTour from './ViewTour';
 import Payment from './Payment';
 import TourForm from './TourForm';
@@ -27,7 +26,6 @@ ReactDOM.render(
         <Route path="/Login"><Login /></Route>
         <Route path="/Register"><Register /></Route>
         <Route path="/Search"><Search /></Route>
-        <Route path="/CreateTour"><CreateTour /></Route>
         <Route path="/Admin"><Admin /></Route>
         <Route path="/Tourist"><Tourist /></Route>
         <Route path="/ViewTour"><ViewTour /></Route>

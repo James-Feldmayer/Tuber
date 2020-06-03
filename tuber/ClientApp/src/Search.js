@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Link as RouterLink } from "react-router-dom";
 import './Search.css';
-import CurrentLocation from './Map';
+import CurrentLocation from './Components/Map';
 
 import { Button, TextField, ButtonGroup, Grid, Table, TableRow, TableCell } from '@material-ui/core'
 
@@ -115,8 +115,22 @@ class Search extends Component {
         </div>
         <div className="App-body">
           <Grid container spacing={3} direction="row" justify="space-evenly" alignItems="center">
-            <Grid item>
+            <Grid item style={{width: "600px"}}>
               <Table size="small" style={{backgroundColor: "#FFFFFF"}}>
+                <TableRow>
+                    <TableCell>Tour Name</TableCell>
+                    <TableCell>Tour Desc</TableCell>
+                    <TableCell>Tour Price</TableCell>
+                    <TableCell>Guide Name</TableCell>
+                    <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Tour Name</TableCell>
+                    <TableCell>Tour Desc</TableCell>
+                    <TableCell>Tour Price</TableCell>
+                    <TableCell>Guide Name</TableCell>
+                    <TableCell><Button component={RouterLink} to="/ViewTour" style={{backgroundColor: "#E0474C", color:"white", fontWeight: "bold"}}>View</Button></TableCell>
+                </TableRow>
                 <TableRow>
                     <TableCell>Tour Name</TableCell>
                     <TableCell>Tour Desc</TableCell>
@@ -140,7 +154,7 @@ class Search extends Component {
                 </TableRow>
               </Table>
             </Grid>
-            <Grid item>
+            <Grid item style={{height: "500px"}}>
               <CurrentLocation
                 centerAroundCurrentLocation
                 google={this.props.google}

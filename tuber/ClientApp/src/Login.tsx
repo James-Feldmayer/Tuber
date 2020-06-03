@@ -67,6 +67,7 @@ function Login() {
           <Grid item>
               <TextField 
                 variant="outlined" 
+                type="password"
                 label="Enter Password" 
                 size="small" 
                 style={{backgroundColor: "#ffffff"}}

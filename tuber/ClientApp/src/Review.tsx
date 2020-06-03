@@ -48,6 +48,36 @@ class TouristHeader extends Component {
     }
 }
 
+function TouristSidebar(props: { username: string; rating: number; totalRecent: number; }) {
+    return (
+        <Grid item>
+            <div>
+                <Grid container direction = "column">
+                    <Grid item style={{backgroundColor: "#7ACFD6", padding: "20px", width: 200, height: 150}}>
+                        <h3 style={{color: "#FFFFFF"}}>Welcome, {props.username}</h3>
+                        <b style={{color: "#FFFFFF"}}>{props.rating} *</b>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{backgroundColor: "#FFFFFF", width: 200, fontWeight: "bold"}}>Dashboard</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{backgroundColor: "#FFFFFF", width: 200, fontWeight: "bold"}}>Recent Messages ({props.totalRecent})</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{backgroundColor: "#FFFFFF", width: 200, fontWeight: "bold"}}>Reviews</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{backgroundColor: "#FFFFFF", width: 200, fontWeight: "bold"}}>Cancelled Tours</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button style={{backgroundColor: "#FFFFFF", width: 200, fontWeight: "bold"}}>All Disputes</Button>
+                    </Grid>
+                </Grid>
+            </div>
+        </Grid>
+    );
+}
+
 class Review extends Component {
     render() {
         let username="Mitchell";
@@ -56,34 +86,10 @@ class Review extends Component {
         return (
             <React.Fragment>
                 <TouristHeader />
-                <div>
+                <div style={{backgroundColor: "#F3F8F9"}}>
                     <Grid container direction="row">
-                        <Grid item>
-                            <div>
-                                <Grid container direction = "column">
-                                    <Grid item style={{backgroundColor: "#7ACFD6", padding: "20px", width: 200, height: 150}}>
-                                        <h3>Welcome, {username}</h3>
-                                        <b>{rating} *</b>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 200, fontWeight: "bold"}}>Dashboard</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 200, fontWeight: "bold"}}>Recent Messages ({totalRecent})</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 200, fontWeight: "bold"}}>Reviews</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 200, fontWeight: "bold"}}>Cancelled Tours</Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button style={{width: 200, fontWeight: "bold"}}>All Disputes</Button>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                        </Grid>
-                        <Grid item style={{padding: "30px", backgroundColor: ""}}>
+                        <TouristSidebar username={username} rating={rating} totalRecent={totalRecent} />
+                        <Grid item style={{padding: "30px"}}>
                             <h4>Monkey Tour</h4>
                             <p>Mr. Smith</p>
                             <p>24th January 2020</p>
