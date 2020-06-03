@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Link as RouterLink } from "react-router-dom";
+import { TextField, Button, InputAdornment, Grid, ButtonGroup, FormLabel } from '@material-ui/core';
 import Session from './Components/Session';
 import ClickMapMarker from './Components/ClickMapMarker';
-import Grid from '@material-ui/core/Grid';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { Link as RouterLink } from "react-router-dom";
-import FormLabel from '@material-ui/core/FormLabel';
 
 class TourForm extends Component {
     constructor(props) {
@@ -49,7 +44,7 @@ class TourForm extends Component {
     getTourDetails(id) {
         //Calls API to get tour info
         //This id is for testing purposes
-        if (id == 1) {
+        if (id === 1) {
             return ({
                 Sessions: [
                     {
@@ -194,22 +189,25 @@ class TourForm extends Component {
     render() {
         return (
             <div>
-                <div style={{padding: "20px"}}>
-                    <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
+                <div style={{padding:"20px"}}>
+                    <Grid container spacing={3} justify="space-between" direction="row">
                         <Grid item>
                             <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
                         </Grid>
                         <Grid item>
-                            <ButtonGroup>
-                                <Button component={RouterLink} to="/" variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Logout</Button>
-                            </ButtonGroup>
+                            <TextField style = {{width: 300}} label="What do you want to explore?" variant="outlined" size="small"></TextField>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button component={RouterLink} to="/Search" style={{backgroundColor: "#E0474C", color:"#FFFFFF", fontWeight: "bold"}}>Search</Button>
                         </Grid>
-                    </Grid>
+                        <Grid item>
+                            <Button component={RouterLink} to="/Tourist" style={{color:"#E0474C", fontWeight: "bold"}}>Access dashboard</Button>
+                        </Grid>
+                    </Grid>        
                 </div>
                 <div style={{padding: "20px", backgroundColor: "#78C5EF"}}>
                     <Grid container spacing={3} direction="row" justify="space-between" alignItems="center">
                         <Grid item>
-                            <h1 style={{color: "#FFFFFF", paddingLeft: "20px"}}>Tour Form</h1>
+                            <h1 style={{color: "#FFFFFF", paddingLeft: "20px"}}>CREATE TOUR</h1>
                         </Grid>
                         <Grid item>
                             <ButtonGroup>

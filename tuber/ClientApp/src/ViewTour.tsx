@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link as RouterLink } from "react-router-dom";
-import { Button,  ButtonGroup, TextField, Grid, Table, TableCell, TableRow } from '@material-ui/core';
+import { Button,  ButtonGroup, TextField, Grid, Table, TableCell, TableRow, TablePagination, TableFooter } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 
 class Header extends Component {
     render() {
@@ -19,7 +20,6 @@ class Header extends Component {
                         </ButtonGroup>
                     </Grid>
                 </Grid>
-                <hr />
             </div>
         );
     }
@@ -49,25 +49,35 @@ class ViewTourBody extends Component {
                         </Grid>
                     </Grid>
                     <Grid item style={{padding: "10px"}}>
-                        <div style={{padding: "10px", backgroundColor: "blue", color: "#FFFFFF", fontWeight: "bold"}}>4.5</div>
-                        <p style={{fontWeight: "bold"}}>Reviews (76)</p>
+                        <Grid container direction ="row">
+                            <Grid item>
+                                <p style={{width: "25px", padding: "5px", backgroundColor: "blue", color: "#FFFFFF", fontWeight: "bold"}}>4.5</p>
+                            </Grid>
+                            <Grid item>
+                                <p style={{fontWeight: "bold", padding: "5px"}}>Reviews (25)</p>
+                            </Grid>
+                        </Grid>
                         <Table>
                             <TableRow>
                                 <TableCell style={{backgroundColor: "#D0D0D0"}}>
                                     <p>Mr. Smith</p>
                                     <p>"Lorem Ipsum"</p>
+                                    <Rating disabled value={5} />
+                                </TableCell>
+                                <TableCell style={{backgroundColor: "#D0D0D0"}}>
+                                    <p>Ms. Jackson</p>
+                                    <p>"Lorem Ipsum"</p>
+                                    <Rating disabled value={2} />
+                                </TableCell>
+                                <TableCell style={{backgroundColor: "#D0D0D0"}}>
+                                    <p>Mrs. Murray</p>
+                                    <p>"Lorem Ipsum"</p>
+                                    <Rating disabled value={4} />
                                 </TableCell>
                                 <TableCell style={{backgroundColor: "#D0D0D0"}}>
                                     <p>Mr. Smith</p>
                                     <p>"Lorem Ipsum"</p>
-                                </TableCell>
-                                <TableCell style={{backgroundColor: "#D0D0D0"}}>
-                                    <p>Mr. Smith</p>
-                                    <p>"Lorem Ipsum"</p>
-                                </TableCell>
-                                <TableCell style={{backgroundColor: "#D0D0D0"}}>
-                                    <p>Mr. Smith</p>
-                                    <p>"Lorem Ipsum"</p>
+                                    <Rating disabled value={4} />
                                 </TableCell>
                             </TableRow>
                         </Table>
@@ -116,7 +126,7 @@ class ViewTour extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <Grid container direction = "row">
+                <Grid container direction = "row" style={{backgroundColor: "#F3F8F9"}}>
                     <ViewTourBody />
                     <ViewTourForm />
                 </Grid>
