@@ -13,7 +13,6 @@ class TourForm extends Component {
             title: "",
             price: 0,
             description: "",
-            barter: false,
             location: {lat: -34.42485, lng: 150.89304},
             //Sessions
             sessionElements: []
@@ -24,9 +23,9 @@ class TourForm extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.match) return; //New create
-        const paramaters = this.props.match.params;
-        const localTour = this.getTourDetails(paramaters.id);
+        if (!this.props.url) return; //New create
+        const id = this.props.url.match.params.id;
+        const localTour = this.getTourDetails(id);
         if (localTour) {
             this.setState({
                 //Form Data
@@ -44,7 +43,7 @@ class TourForm extends Component {
     getTourDetails(id) {
         //Calls API to get tour info
         //This id is for testing purposes
-        if (id === 1) {
+        if (id === "1") {
             return ({
                 Sessions: [
                     {
@@ -122,10 +121,6 @@ class TourForm extends Component {
         this.setState({price: price});
     }
 
-    handleBarterChange = (event) => {
-        this.setState({barter: !this.state.barter});
-    }
-
     handleLocationChange = (value) => {
         this.setState({Location: value});
     }
@@ -135,7 +130,7 @@ class TourForm extends Component {
         const postSettings = {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
@@ -152,22 +147,38 @@ class TourForm extends Component {
     }
 
     handleSaveButton = (event) => {
+        const sessions = this.state.sessions
+            .filter(sess => sess !== null)
+            .map(sess => {
+            console.log(sess);
+            const dateTime = sess.Date + "T" + sess.Time;
+            return {
+                SessionId: sess.SessionId ? sess.SessionId : 0,
+                SessionDatetime: dateTime,
+                TourId: this.props.url ? this.props.url.match.params.id : 0
+            }
+        })
         let address = "AdjustTour/Create";
-        if (this.props.match.params) address = `AdjustTour/Update/${this.props.match.params.id}`;
+        if (this.props.url) address = "AdjustTour/Update";
         const data = {
-            sessions: this.state.Sessions,
-            title: this.state.Title,
-            price: this.state.Price,
-            description: this.state.Description,
-            location: this.state.Location
+            TourId: this.props.url ? this.props.url.match.params.id : 0,
+            GuideId: this.props.user ? this.props.user.UserId : 1,
+            Session: sessions,
+            TourTitle: this.state.title,
+            //Price: this.state.price,
+            TourDescription: this.state.description,
+            Latitude: this.state.location.lat,
+            Longitude: this.state.location.lng
         };
+        console.log(data);
         this.apiCall(true, address, data)
             .then((response) => console.log(response));
     }
 
     handleDeleteButton = (event) => {
-        const address = `AdjustTour/Delete/${this.props.match.params.id}`;
-        this.apiCall(true, address)
+        const address = "AdjustTour/Delete";
+        const data = {TourId: this.props.url ? this.props.url.match.params.id : 0};
+        this.apiCall(true, address, data)
             .then((response) => console.log(response));
     }
 
@@ -212,7 +223,7 @@ class TourForm extends Component {
                         <Grid item>
                             <ButtonGroup>
                                 <Button onClick={this.handleSaveButton} variant='outlined' style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Save</Button>
-                                {this.props.match ? <Button onClick={this.handleDeleteButton} variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Delete</Button> : <></>}
+                                {this.props.url ? <Button onClick={this.handleDeleteButton} variant='outlined' style={{backgroundColor: "#ffffff", color: "#E0474C", fontWeight: "bold"}}>Delete</Button> : <></>}
                             </ButtonGroup>
                         </Grid>
                     </Grid>

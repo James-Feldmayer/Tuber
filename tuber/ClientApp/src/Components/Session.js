@@ -12,11 +12,14 @@ class Session extends Component {
     constructor(props) {
         super(props);
         if (props.defaultSession) {
-            const hour = Math.floor(props.defaultSession.Duration / 60);
-            const min = (props.defaultSession.Duration % 60);
+            const hour = props.defaultSession.Duration ? Math.floor(props.defaultSession.Duration / 60) : 0;
+            const min = props.defaultSession.Duration ? (props.defaultSession.Duration % 60) : 0;
+            const tPos = props.defaultSession.Datetime ? props.defaultSession.Datetime.index("T") : 0;
+            const Date = props.defaultSession.Datetime ? props.defaultSession.Datetime.substring(0, tPos) : "2020-06-04";
+            const Time = props.defaultSession.Datetime ? props.defaultSession.Datetime.substring(tPos + 1, props.defaultSession.Datetime.length) : "09:30";
             this.state = {
-                date: props.defaultSession.Date,
-                time: props.defaultSession.Time,
+                date: Date,
+                time: Time,
                 hourDuration: hour,
                 minuteDuration: min
             }

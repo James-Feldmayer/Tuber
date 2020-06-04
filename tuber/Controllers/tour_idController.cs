@@ -6,30 +6,32 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-//https://local:5001/api/login/
+// https://local:5001/api/search_tour/
 
 namespace tuber
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class loginController : ControllerBase
+    public class tour_idController : ControllerBase
     {
         private readonly tuber_databaseContext _context;
 
-        public loginController() 
+        public tour_idController() 
         {
             _context = new tuber_databaseContext(); 
         }
 
-        // POST: { "UsersId": "DrNoobopolis", "Password": "P3NIZ" }
+        //https://local:5001/api/tour_id
+        // POST: { "TourTitle": "", "TourDescription": "", "AggregateScore": 5 }
         [HttpPost]
-        public async Task<ActionResult<Users>> login(Users input)
+        public async Task<ActionResult<Tour>> tourId(Tour input)
         {
-            Users query = await _context.Users.FindAsync(input.UsersId);
+            Tour query = await _context.Tour.FindAsync(input.TourId);
 
-            return query; 
+            return query;
         }
-
+        
     }
 
 }
+
