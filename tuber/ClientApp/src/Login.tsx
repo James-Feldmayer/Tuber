@@ -4,6 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
+import { Redirect } from 'react-router';
 
 async function postData(url = '', data = {}) {
   const response = await fetch(url, {
@@ -20,29 +21,28 @@ async function postData(url = '', data = {}) {
   return response.text();
 }
 
-function Login() {
+function Login(props: { changeUser: (arg0: {}) => void; }) {
   const [user, setUser] = useState({username : "", password : ""}) //input
-  const [signal, setSignal] = useState("Loading..."); //output
+  const [userObject, setUserObject] = useState({}); //output
+  const [loggedIn, login] = useState(false);
 
   function handleClick() {
     postData('https://localhost:5001/api/Login', { UsersId: user.username, Password: user.password })
-      .then((response) => { setSignal(response); });
-    
-    if (user.username !== '') {
-      if (user.username === "admin") {
-        window.location.href = "/Admin"
-      } else {
-        window.location.href = "/Tourist"
-      }
-    }
+      .then((response) => {
+        if (response) {setUserObject(JSON.parse(response));
+          props.changeUser(JSON.parse(response));
+          login(true);
+        }
+      });
   }
 
   return (
     <React.Fragment>
+      {loggedIn ? <Redirect push to="/Tourist"/> : <></>}
       <div style={{padding:"20px"}}>        
         <Grid container spacing={3} justify="space-between" direction="row">
           <Grid item>
-            <a href="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</a>
+            <RouterLink to="/" style={{color: "#000000", fontWeight: "bold", fontSize:"36px", textDecoration: "none"}}>TUBER</RouterLink>
           </Grid>
           <Grid item>
             <Button component={RouterLink} to="/Search" style={{color:"#E0474C", fontWeight: "bold"}}>Search Tours</Button>
@@ -75,26 +75,12 @@ function Login() {
               />
           </Grid>
           <Grid item>
-            <Button variant='outlined' onClick={() => {window.location.href = "/Tourist"}} style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
+            <Button variant='outlined' onClick={handleClick} style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Login</Button>
           </Grid>
           <Grid item>
-            <a href="/Register" title="Sign up for Tuber" style={{color:"White"}}>Not registered? Sign up for Tuber</a>
+            <RouterLink to="/Register" title="Sign up for Tuber" style={{color:"White"}}>Not registered? Sign up for Tuber</RouterLink>
           </Grid>
         </Grid>
-
-        <br />
-
-        <Button variant='outlined' onClick={handleClick} style={{backgroundColor: "#ffffff", fontWeight: "bold"}}>Call the actual API</Button>
-
-        <br />
-        <br />
-
-        <label>{user.username + " " + user.password}</label>
-
-        <br />
-        <br />
-
-        <h1>{signal}</h1>
       </div>
     </React.Fragment>
   );
