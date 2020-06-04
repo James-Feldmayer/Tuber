@@ -21,11 +21,11 @@ async function postData(url = '', data = {}) {
 }
 
 function Register() {
-  const [user, setUser] = useState({username : "", password : ""}) //input
+  const [user, setUser] = useState({fullname: "", email: "", password : ""}) //input
   const [signal, setSignal] = useState("Loading..."); //output
 
   function handleClick() {
-    postData('https://localhost:5001/api/Login', { Username: user.username, Password: user.password })
+    postData('https://localhost:5001/api/Login', { Fullname: user.fullname, Email: user.email, Password: user.password })
       .then((response) => { setSignal(response); });
 
     window.location.href = "/Tourist"
@@ -55,17 +55,17 @@ function Register() {
               label="Enter full name"
               color="primary"
               style={{backgroundColor: "#ffffff"}}
-              onChange={e => setUser({username : e.target.value, password : user.password})}
+              onChange={e => setUser({fullname : e.target.value, email: user.email, password : user.password})}
             />
           </Grid>
           <Grid item>
             <TextField 
               variant="outlined" 
               size="small" 
-              label="Enter username"
+              label="Enter email address"
               color="primary"
               style={{backgroundColor: "#ffffff"}}
-              onChange={e => setUser({username : e.target.value, password : user.password})}
+              onChange={e => setUser({fullname : user.fullname, email : e.target.value, password : user.password})}
             />
           </Grid>
           <Grid item>
@@ -75,7 +75,7 @@ function Register() {
                 label="Enter password" 
                 size="small" 
                 style={{backgroundColor: "#ffffff"}}
-                onChange={e => setUser({username : user.username, password : e.target.value})} 
+                onChange={e => setUser({fullname : user.fullname, email: user.email, password : e.target.value})} 
               />
           </Grid>
           <Grid item>
@@ -85,7 +85,7 @@ function Register() {
                 label="Confirm password" 
                 size="small" 
                 style={{backgroundColor: "#ffffff"}}
-                onChange={e => setUser({username : user.username, password : e.target.value})} 
+                onChange={e => setUser({fullname : user.fullname, email: user.email, password : e.target.value})} 
               />
           </Grid>
           <Grid item>
